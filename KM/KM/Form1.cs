@@ -27,7 +27,7 @@ namespace KM
         {
             Size = new Size(width, height);
 
-            vc = new ViewContext(new ViewTextInfo("test", ""), this);
+            vc = new ViewContext(new ViewTextInfo("test", "Test"), this);
         }
     }
 }

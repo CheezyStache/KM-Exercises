@@ -32,7 +32,7 @@ namespace KM
             {
                 Width = form.Width,
                 Height = form.Height,
-                BackColor = Color.FromArgb(75, 95, 70) //lime-yellow
+                BackColor = Color.FromArgb(90, 87, 102) //dark-grey
             };
             form.Controls.Add(mainPanel);
             allFormElements.Add(mainPanel);
@@ -40,10 +40,12 @@ namespace KM
             operationName = new Label
             {
                 Text = _operationName,
-                BackColor = Color.FromArgb(35, 90, 40), //brown-yellow
-                ForeColor = Color.LightGray,
-                Location = new Point(form.Width / 10, form.Height / 10),
-                Size = new Size(form.Width / 10 * 8, form.Height / 10)
+                BackColor = Color.FromArgb(97, 231, 134), //green
+                Location = new Point(form.Width / 20, form.Height / 20),
+                Size = new Size(form.Width / 20 * 18, form.Height / 10),
+                ForeColor = Color.FromArgb(72, 67, 92),
+                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                TextAlign = ContentAlignment.MiddleCenter
             };
             mainPanel.Controls.Add(operationName);
             allFormElements.Add(operationName);
@@ -53,10 +55,13 @@ namespace KM
                 Text = "Начать заново",
                 Width = operationName.Width / 4,
                 Height = operationName.Height,
-                Location = new Point(form.Width / 10, form.Height / 4),
-                BackColor = Color.FromArgb(55, 100, 80), //yellow
-                ForeColor = Color.Black
+                Location = new Point(form.Width / 20, form.Height / 5),
+                BackColor = Color.FromArgb(72, 67, 92), //darker-gray
+                Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                ForeColor = Color.FromArgb(237, 255, 236),
+                FlatStyle = FlatStyle.Flat
             };
+            home.FlatAppearance.BorderSize = 0;
             mainPanel.Controls.Add(home);
             allFormElements.Add(home);
 
@@ -65,10 +70,13 @@ namespace KM
                 Text = "Предыдущая страница",
                 Width = operationName.Width / 4,
                 Height = operationName.Height,
-                Location = new Point(form.Width / 10 + 3 * operationName.Width / 8, form.Height / 4),
-                BackColor = Color.FromArgb(55, 100, 80), //yellow
-                ForeColor = Color.Black
+                Location = new Point(form.Width / 20 + 3 * operationName.Width / 8, form.Height / 5),
+                BackColor = Color.FromArgb(72, 67, 92), //darker-gray
+                Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                ForeColor = Color.FromArgb(237, 255, 236),
+                FlatStyle = FlatStyle.Flat
             };
+            prev.FlatAppearance.BorderSize = 0;
             mainPanel.Controls.Add(prev);
             allFormElements.Add(prev);
 
@@ -77,18 +85,24 @@ namespace KM
                 Text = "Следующая страница",
                 Width = operationName.Width / 4,
                 Height = operationName.Height,
-                Location = new Point(form.Width / 10 + 3 * operationName.Width / 4, form.Height / 4),
-                BackColor = Color.FromArgb(55, 100, 80), //yellow
-                ForeColor = Color.Black
+                Location = new Point(form.Width / 20 + 3 * operationName.Width / 4, form.Height / 5),
+                BackColor = Color.FromArgb(72, 67, 92), //darker-gray
+                Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                ForeColor = Color.FromArgb(237, 255, 236),
+                FlatStyle = FlatStyle.Flat
             };
+            next.FlatAppearance.BorderSize = 0;
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
             richTextBox = new RichTextBox
             {
-                BackColor = Color.LightGray,
-                Location = new Point(form.Width / 10, 2 * form.Height / 5),
-                Size = new Size(operationName.Width, form.Height / 2)
+                BackColor = Color.FromArgb(237, 255, 236), //white-bit green
+                Location = new Point(form.Width / 20, 7 * form.Height / 20),
+                Size = new Size(operationName.Width, 11 * form.Height / 20),
+                BorderStyle = BorderStyle.None,
+                ForeColor = Color.FromArgb(72, 67, 92),
+                Font = new Font("Times New Roman", 14, FontStyle.Regular)
             };
             mainPanel.Controls.Add(richTextBox);
             allFormElements.Add(richTextBox);
