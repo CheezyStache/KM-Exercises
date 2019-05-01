@@ -8,7 +8,7 @@ namespace KM
 {
     interface IMathStrategy
     {
-        string ShowInfo();
+        string[] ShowInfo();
     }
 
     class MathContext
@@ -25,7 +25,7 @@ namespace KM
             _strategy = strategy;
         }
 
-        public string ShowInfo()
+        public string[] ShowInfo()
         {
             return _strategy.ShowInfo();
         }

@@ -10,7 +10,7 @@ namespace KM
 {
     class ViewTextInfo: IViewStrategy
     {
-        private RichTextBox richTextBox;
+        private RichTextBox[] richTextBox;
         private Button home;
         private Button prev;
         private Button next;
@@ -18,9 +18,9 @@ namespace KM
         private Panel mainPanel;
 
         private string _operationName;
-        private string _info;
+        private string[] _info;
 
-        public ViewTextInfo(string info, string operation)
+        public ViewTextInfo(string[] info, string operation)
         {
             _info = info;
             _operationName = operation;
@@ -95,17 +95,35 @@ namespace KM
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
-            richTextBox = new RichTextBox
+            richTextBox = new RichTextBox[_info.Length];
+
+            for (int i = 0; i < _info.Length; i++)
             {
-                BackColor = Color.FromArgb(237, 255, 236), //white-bit green
-                Location = new Point(form.Width / 20, 7 * form.Height / 20),
-                Size = new Size(operationName.Width, 11 * form.Height / 20),
-                BorderStyle = BorderStyle.None,
-                ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 14, FontStyle.Regular)
-            };
-            mainPanel.Controls.Add(richTextBox);
-            allFormElements.Add(richTextBox);
+                int offset = 0;
+                if (i != 0)
+                    offset = form.Height / 40;
+
+                int shrink = 0;
+                if (_info.Length != 1)
+                    shrink = form.Height / 40;
+
+                if (i != 0 && i != _info.Length - 1)
+                    shrink = form.Height / 20;
+
+                richTextBox[i] = new RichTextBox
+                {
+                    BackColor = Color.FromArgb(237, 255, 236), //white-bit green
+                    Location = new Point(form.Width / 20 + i * operationName.Width / _info.Length + offset, 7 * form.Height / 20),
+                    Size = new Size(operationName.Width / _info.Length - shrink, 11 * form.Height / 20),
+                    BorderStyle = BorderStyle.None,
+                    ForeColor = Color.FromArgb(72, 67, 92),
+                    Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                    ReadOnly = true,
+                    Text = _info[i]
+                };
+                mainPanel.Controls.Add(richTextBox[i]);
+                allFormElements.Add(richTextBox[i]);
+            }
         }
     }
 }

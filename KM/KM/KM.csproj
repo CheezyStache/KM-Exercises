@@ -52,11 +52,17 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Input.cs" />
+    <Compile Include="Math\Math1.cs" />
+    <Compile Include="Math\Math2.cs" />
+    <Compile Include="Math\Math3.cs" />
+    <Compile Include="Math\Math4.cs" />
+    <Compile Include="Math\Math5.cs" />
+    <Compile Include="Math\Math6.cs" />
     <Compile Include="MathStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewStrategy.cs" />
-    <Compile Include="ViewTextInfo.cs" />
+    <Compile Include="View\ViewTextInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
