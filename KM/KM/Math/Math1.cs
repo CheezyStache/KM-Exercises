@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KM
 {
-    class Math1: IMathStrategy
+    class Math1//: IMathStrategy
     {
     }
 }

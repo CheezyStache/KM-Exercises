@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KM.View;
 
 namespace KM
 {
@@ -27,7 +28,13 @@ namespace KM
         {
             Size = new Size(width, height);
 
-            vc = new ViewContext(new ViewTextInfo(new string[] { "" }, "Test"), this);
+            vc = new ViewContext(new ViewStartInput(), this);
+            //vc = new ViewContext(new ViewTextInfo(new string[] { "" }, "Test"), this);
+        }
+
+        public void AfterInput()
+        {
+            vc.SetView(new ViewTableInput());
         }
     }
 }
