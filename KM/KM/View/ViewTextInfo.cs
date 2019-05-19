@@ -69,6 +69,7 @@ namespace KM.View
                 FlatStyle = FlatStyle.Flat
             };
             home.FlatAppearance.BorderSize = 0;
+            home.Click += Home_Click;
             mainPanel.Controls.Add(home);
             allFormElements.Add(home);
 
@@ -136,6 +137,11 @@ namespace KM.View
 
             _manageService.ChangeButtons(next, prev);
             _manageService.ProcessNext();
+        }
+
+        private void Home_Click(object sender, EventArgs e)
+        {
+            _form.StartAgain();
         }
 
         private void Prev_Click(object sender, EventArgs e)

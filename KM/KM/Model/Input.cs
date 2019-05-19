@@ -34,6 +34,8 @@ namespace KM
         }
 
         public static double[,] ZeroAndInterval { get; set; }
+
+        public static bool[][] GenerationX { get; set; }
     }
 
     public class TableObject

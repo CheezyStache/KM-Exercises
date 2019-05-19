@@ -17,7 +17,7 @@ namespace KM
         private const int height = 720;
         private const int width = 1280;
 
-        private int counter = -1;
+        private int counter = 0;
 
         private ViewContext vc;
         private ManageService manageService;
@@ -34,7 +34,6 @@ namespace KM
             manageService = new ManageService();
 
             vc = new ViewContext(new ViewStartInput(), this, manageService);
-            //vc = new ViewContext(new ViewTextInfo(new string[] { "" }, "Test"), this);
         }
 
         public void AfterInput()
@@ -44,22 +43,36 @@ namespace KM
 
         public void ChangePage()
         {
-            if (counter == -1)
-                vc.SetView(new ViewTableInput());
-            else
-                vc.SetView(new ViewTextInfo(manageService.GetStringResultFromStep(counter), manageService.GetNameFromStep(counter)));
+            switch (counter)
+            {
+                case 0:
+                    vc.SetView(new ViewTableInput());
+                    break;
+                case 1:
+                    vc.SetView(new ViewGenerationChoose());
+                    break;
+                default:
+                    vc.SetView(new ViewTextInfo(manageService.GetStringResultFromStep(counter), manageService.GetNameFromStep(counter)));
+                    break;
+            }
         }
 
         public void NextPage()
         {
-            if(counter < 5)
+            if(counter < 6)
                 counter++;
         }
 
         public void PrevPage()
         {
-            if(counter > -1)
+            if(counter > 0)
                 counter--;
+        }
+
+        public void StartAgain()
+        {
+            counter = 0;
+            vc.SetView(new ViewStartInput());
         }
     }
 }

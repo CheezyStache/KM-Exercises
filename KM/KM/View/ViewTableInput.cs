@@ -18,17 +18,18 @@ namespace KM.View
         private Form1 _form;
 
         private Button next;
+        private Button home;
         private Label operationName;
         private Panel mainPanel;
 
-        private ManageService _mangeService;
+        private ManageService _manageService;
 
         private const string _operationName = "Таблица результатов";
 
         public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _form = form as Form1;
-            _mangeService = manageService;
+            _manageService = manageService;
 
             mainPanel = new Panel
             {
@@ -68,6 +69,22 @@ namespace KM.View
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
+            home = new Button
+            {
+                Text = "Начать заново",
+                Width = operationName.Width / 4,
+                Height = operationName.Height,
+                Location = new Point(form.Width / 20, 8 * form.Height / 10),
+                BackColor = Color.FromArgb(72, 67, 92), //darker-gray
+                Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                ForeColor = Color.FromArgb(237, 255, 236),
+                FlatStyle = FlatStyle.Flat
+            };
+            home.FlatAppearance.BorderSize = 0;
+            home.Click += Home_Click;
+            mainPanel.Controls.Add(home);
+            allFormElements.Add(home);
+
             mainTable = new DataGridView
             {
                 EnableHeadersVisualStyles = false,
@@ -84,8 +101,13 @@ namespace KM.View
             
             TableCreate();
 
-            _mangeService.ChangeButtons(next);
-            _mangeService.ProcessNext();
+            _manageService.ChangeButtons(next);
+            _manageService.ProcessNext();
+        }
+
+        private void Home_Click(object sender, EventArgs e)
+        {
+            _form.StartAgain();
         }
 
         private void Next_Click(object sender, EventArgs e)
@@ -116,7 +138,7 @@ namespace KM.View
                 ForeColor = Color.FromArgb(72, 67, 92),
             };
 
-            tableObjects = _mangeService.GetResultFromStep(0) as TableObject[];
+            tableObjects = _manageService.GetResultFromStep(0) as TableObject[];
 
             mainTable.ColumnCount = Input.XCount + Input.YCount + 1;
             mainTable.RowCount = Input.ResearchCount;

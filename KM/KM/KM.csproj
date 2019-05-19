@@ -65,6 +65,7 @@
     <Compile Include="Services\IManageService.cs" />
     <Compile Include="Model\ViewStrategy.cs" />
     <Compile Include="Services\ManageService.cs" />
+    <Compile Include="View\ViewGenerationChoose.cs" />
     <Compile Include="View\ViewStartInput.cs" />
     <Compile Include="View\ViewTableInput.cs" />
     <Compile Include="View\ViewTableParams.cs" />

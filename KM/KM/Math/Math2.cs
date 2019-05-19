@@ -19,7 +19,7 @@ namespace KM
 
         public object[] GetResult()
         {
-            throw new NotImplementedException();
+            return Input.GenerationX;
         }
 
         public Status Process()
@@ -32,12 +32,12 @@ namespace KM
 
         public string GetName()
         {
-            throw new NotImplementedException();
+            return "Выбор генерирующих соотношений";
         }
 
         public string[] GetStringResult()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }
