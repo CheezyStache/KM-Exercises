@@ -64,6 +64,7 @@
     <Compile Include="ViewStrategy.cs" />
     <Compile Include="View\ViewStartInput.cs" />
     <Compile Include="View\ViewTableInput.cs" />
+    <Compile Include="View\ViewTableParams.cs" />
     <Compile Include="View\ViewTextInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

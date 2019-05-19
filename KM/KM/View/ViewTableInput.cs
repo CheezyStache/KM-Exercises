@@ -70,14 +70,16 @@ namespace KM.View
                 Size = new Size(9 * form.Width / 10, 3 * form.Height / 5),
                 Location = new Point(form.Width / 20, form.Height / 6),
                 BackColor = Color.FromArgb(237, 255, 236), //white-bit green
-                ForeColor = Color.FromArgb(72, 67, 92)//,
-                //Font = new Font("Times New Roman", 20, FontStyle.Regular)
+                ForeColor = Color.FromArgb(72, 67, 92),
+                Font = new Font("Times New Roman", 20, FontStyle.Regular)
             };
             mainTable.AutoSize = true;
             mainPanel.Controls.Add(mainTable);
             allFormElements.Add(mainTable);
 
-            TableCreate();
+            //GenerateTable();
+            
+            //TableCreate();
         }
 
         private void Next_Click(object sender, EventArgs e)
@@ -85,33 +87,40 @@ namespace KM.View
             throw new NotImplementedException();
         }
 
-        private void TableCreate()
+        /*private void TableCreate()
         {
-            bindingSource = new BindingSource();
-
             mainTable.ColumnCount = Input.XCount + Input.YCount + 1;
+            mainTable.RowCount = Input.ResearchCount;
 
             mainTable.Columns[0].Name = "N";
             for (int i = 1; i <= Input.XCount; i++)
                 mainTable.Columns[i].Name = "x" + i;
             for (int i = 1; i <= Input.YCount; i++)
-                mainTable.Columns[i + Input.XCount].Name = "y" + i;
+                if(i != Input.YCount)
+                    mainTable.Columns[i + Input.XCount].Name = "y" + i;
+                else
+                    mainTable.Columns[i + Input.XCount].Name = "y ср.";
 
-            tableObjects = new TableObject[Input.ResearchCount];
-
-            for (int i = 0; i < Input.ResearchCount; i++)
+            for (int i = 0; i < Input.TableInput.Length; i++)
             {
-                tableObjects[i] = new TableObject
+                for(int j = 0; j < Input.XCount + Input.YCount + 1; j++)
                 {
-                    Number = i + 1,
-                    X = new double[Input.XCount],
-                    Y = new double[Input.YCount]
-                };
-
-                bindingSource.Add(tableObjects[i]);
+                    if (j == 0)
+                        mainTable.Rows[i].Cells[j].Value = Input.TableInput[i].Number;
+                    else if(j < Input.XCount + 1)
+                        mainTable.Rows[i].Cells[j].Value = Input.TableInput[i].X[j - 1];
+                    else
+                        mainTable.Rows[i].Cells[j].Value = Input.TableInput[i].Y[j - Input.XCount - 1];
+                }
             }
 
-            mainTable.DataSource = bindingSource;
+            mainTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            mainTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
+
+        private void GenerateTable()
+        {
+            
+        }*/
     }
 }

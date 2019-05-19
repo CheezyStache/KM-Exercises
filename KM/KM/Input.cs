@@ -33,7 +33,7 @@ namespace KM
             set { l = value; }
         }
 
-        public static TableObject[] TableInput { get; set; }
+        public static double[,] ZeroAndInterval { get; set; }
     }
 
     public class TableObject

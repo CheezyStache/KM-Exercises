@@ -16,6 +16,8 @@ namespace KM
         private const int height = 720;
         private const int width = 1280;
 
+        private int counter = -1;
+
         private ViewContext vc;
 
         public Form1()
@@ -34,7 +36,13 @@ namespace KM
 
         public void AfterInput()
         {
-            vc.SetView(new ViewTableInput());
+            vc.SetView(new ViewTableParams());
+        }
+
+        public void ChangePage()
+        {
+            if (counter == -1)
+                vc.SetView(new ViewTableInput());
         }
     }
 }
