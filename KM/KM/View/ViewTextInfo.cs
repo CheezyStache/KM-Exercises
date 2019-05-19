@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using KM.Services;
 
 namespace KM.View
 {
@@ -20,14 +21,20 @@ namespace KM.View
         private string _operationName;
         private string[] _info;
 
+        private ManageService _manageService;
+        private Form1 _form;
+
         public ViewTextInfo(string[] info, string operation)
         {
             _info = info;
             _operationName = operation;
         }
 
-        public void MakeView(Form form, List<IDisposable> allFormElements)
+        public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
+            _manageService = manageService;
+            _form = form as Form1;
+
             mainPanel = new Panel
             {
                 Width = form.Width,
@@ -77,6 +84,7 @@ namespace KM.View
                 FlatStyle = FlatStyle.Flat
             };
             prev.FlatAppearance.BorderSize = 0;
+            prev.Click += Prev_Click;
             mainPanel.Controls.Add(prev);
             allFormElements.Add(prev);
 
@@ -92,6 +100,7 @@ namespace KM.View
                 FlatStyle = FlatStyle.Flat
             };
             next.FlatAppearance.BorderSize = 0;
+            next.Click += Next_Click;
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
@@ -124,6 +133,21 @@ namespace KM.View
                 mainPanel.Controls.Add(richTextBox[i]);
                 allFormElements.Add(richTextBox[i]);
             }
+
+            _manageService.ChangeButtons(next, prev);
+            _manageService.ProcessNext();
+        }
+
+        private void Prev_Click(object sender, EventArgs e)
+        {
+            _form.PrevPage();
+            _form.ChangePage();
+        }
+
+        private void Next_Click(object sender, EventArgs e)
+        {
+            _form.NextPage();
+            _form.ChangePage();
         }
     }
 }

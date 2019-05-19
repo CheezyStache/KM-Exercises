@@ -24,6 +24,19 @@ namespace KM
 
         public Status Process()
         {
+            Status status = new Status();
+            status.isSuccsess = true;
+            status.messages = new string[] { "Element 3", "ok" };
+            return status;
+        }
+
+        public string GetName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] GetStringResult()
+        {
             throw new NotImplementedException();
         }
     }

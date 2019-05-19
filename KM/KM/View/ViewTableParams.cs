@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using KM.Services;
 
 namespace KM.View
 {
@@ -21,11 +22,14 @@ namespace KM.View
         private Label[,] labels;
         private TextBox[,] textBoxes;
 
+        private ManageService _manageService;
+
         private const string _operationName = "Таблица результатов";
 
-        public void MakeView(Form form, List<IDisposable> allFormElements)
+        public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _form = form as Form1;
+            _manageService = manageService;
 
             mainPanel = new Panel
             {
@@ -105,6 +109,8 @@ namespace KM.View
 
             Input.ZeroAndInterval = temp;
 
+            _manageService.ChangeButtons(next);
+            _manageService.StartFromTheBeggining();
             _form.ChangePage();
         }
 

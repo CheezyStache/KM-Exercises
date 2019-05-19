@@ -26,5 +26,15 @@ namespace KM
         {
             throw new NotImplementedException();
         }
+
+        public string GetName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] GetStringResult()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

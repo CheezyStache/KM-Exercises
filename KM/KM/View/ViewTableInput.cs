@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using KM.Services;
 
 namespace KM.View
 {
     class ViewTableInput : IViewStrategy
     {
         private DataGridView mainTable;
-        private BindingSource bindingSource;
 
         private TableObject[] tableObjects;
 
@@ -21,11 +21,14 @@ namespace KM.View
         private Label operationName;
         private Panel mainPanel;
 
+        private ManageService _mangeService;
+
         private const string _operationName = "Таблица результатов";
 
-        public void MakeView(Form form, List<IDisposable> allFormElements)
+        public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _form = form as Form1;
+            _mangeService = manageService;
 
             mainPanel = new Panel
             {
@@ -67,28 +70,34 @@ namespace KM.View
 
             mainTable = new DataGridView
             {
+                EnableHeadersVisualStyles = true,
                 Size = new Size(9 * form.Width / 10, 3 * form.Height / 5),
                 Location = new Point(form.Width / 20, form.Height / 6),
                 BackColor = Color.FromArgb(237, 255, 236), //white-bit green
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular)
+                Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                ColumnHeadersHeight = 40,
+                ScrollBars = ScrollBars.Both
             };
-            mainTable.AutoSize = true;
             mainPanel.Controls.Add(mainTable);
             allFormElements.Add(mainTable);
-
-            //GenerateTable();
             
-            //TableCreate();
+            TableCreate();
+
+            _mangeService.ChangeButtons(next);
+            _mangeService.ProcessNext();
         }
 
         private void Next_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            _form.NextPage();
+            _form.ChangePage();
         }
-
-        /*private void TableCreate()
+    
+        private void TableCreate()
         {
+            tableObjects = _mangeService.GetResultFromStep(0) as TableObject[];
+
             mainTable.ColumnCount = Input.XCount + Input.YCount + 1;
             mainTable.RowCount = Input.ResearchCount;
 
@@ -101,26 +110,22 @@ namespace KM.View
                 else
                     mainTable.Columns[i + Input.XCount].Name = "y ср.";
 
-            for (int i = 0; i < Input.TableInput.Length; i++)
+            for (int i = 0; i < tableObjects.Length; i++)
             {
                 for(int j = 0; j < Input.XCount + Input.YCount + 1; j++)
                 {
                     if (j == 0)
-                        mainTable.Rows[i].Cells[j].Value = Input.TableInput[i].Number;
+                        mainTable.Rows[i].Cells[j].Value = tableObjects[i].Number;
                     else if(j < Input.XCount + 1)
-                        mainTable.Rows[i].Cells[j].Value = Input.TableInput[i].X[j - 1];
+                        mainTable.Rows[i].Cells[j].Value = tableObjects[i].X[j - 1];
                     else
-                        mainTable.Rows[i].Cells[j].Value = Input.TableInput[i].Y[j - Input.XCount - 1];
+                        mainTable.Rows[i].Cells[j].Value = tableObjects[i].Y[j - Input.XCount - 1];
                 }
             }
 
-            mainTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            mainTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            if(mainTable.ColumnCount < 15)
+                mainTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            mainTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
         }
-
-        private void GenerateTable()
-        {
-            
-        }*/
     }
 }

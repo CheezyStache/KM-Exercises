@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using KM.Services;
 
 namespace KM.View
 {
@@ -28,7 +29,7 @@ namespace KM.View
 
         private const string _operationName = "Ввод входных данных";
 
-        public void MakeView(Form form, List<IDisposable> allFormElements)
+        public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _form = form as Form1;
 

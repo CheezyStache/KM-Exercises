@@ -59,5 +59,15 @@ namespace KM
             status.messages = new string[]{"Element 1", "ok"};
             return status;
         }
+
+        public string GetName()
+        {
+            return "Таблица исходных данных";
+        }
+
+        public string[] GetStringResult()
+        {
+            return null;
+        }
     }
 }

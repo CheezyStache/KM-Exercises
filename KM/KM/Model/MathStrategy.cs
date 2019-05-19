@@ -11,6 +11,8 @@ namespace KM
     {
         Status Process();
         object[] GetResult();
+        string GetName();
+        string[] GetStringResult();
     }
 
     class MathContext

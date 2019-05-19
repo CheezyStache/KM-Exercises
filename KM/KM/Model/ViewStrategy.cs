@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KM.Services;
 
 namespace KM
 {
     interface IViewStrategy
     {
-        void MakeView(Form form, List<IDisposable> allFormElements);
+        void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService);
     }
 
     class ViewContext
@@ -17,11 +18,13 @@ namespace KM
         private IViewStrategy _strategy;
         private List<IDisposable> allFormElements;
         private Form _form;
+        private ManageService _manageService;
 
-        public ViewContext(IViewStrategy strategy, Form form)
+        public ViewContext(IViewStrategy strategy, Form form, ManageService manageService)
         {
             _strategy = strategy;
             _form = form;
+            _manageService = manageService;
             allFormElements = new List<IDisposable>();
             MakeView(_form, allFormElements);
         }
@@ -35,7 +38,7 @@ namespace KM
 
         private void MakeView(Form form, List<IDisposable> allFormElements)
         {
-            _strategy.MakeView(form, allFormElements);
+            _strategy.MakeView(form, allFormElements, _manageService);
         }
 
         private void DisposeAll()

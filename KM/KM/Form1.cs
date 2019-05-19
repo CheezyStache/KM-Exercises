@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KM.View;
+using KM.Services;
 
 namespace KM
 {
@@ -19,6 +20,7 @@ namespace KM
         private int counter = -1;
 
         private ViewContext vc;
+        private ManageService manageService;
 
         public Form1()
         {
@@ -29,8 +31,9 @@ namespace KM
         private void FormSettings()
         {
             Size = new Size(width, height);
+            manageService = new ManageService();
 
-            vc = new ViewContext(new ViewStartInput(), this);
+            vc = new ViewContext(new ViewStartInput(), this, manageService);
             //vc = new ViewContext(new ViewTextInfo(new string[] { "" }, "Test"), this);
         }
 
@@ -43,6 +46,20 @@ namespace KM
         {
             if (counter == -1)
                 vc.SetView(new ViewTableInput());
+            else
+                vc.SetView(new ViewTextInfo(manageService.GetStringResultFromStep(counter), manageService.GetNameFromStep(counter)));
+        }
+
+        public void NextPage()
+        {
+            if(counter < 5)
+                counter++;
+        }
+
+        public void PrevPage()
+        {
+            if(counter > -1)
+                counter--;
         }
     }
 }
