@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,7 @@ namespace KM
 {
     interface IMathStrategy
     {
-        string[] ShowInfo();
-        void Process();
+        Status Process();
         object[] GetResult();
     }
 
@@ -27,9 +27,9 @@ namespace KM
             _strategy = strategy;
         }
 
-        public string[] ShowInfo()
-        {
-            return _strategy.ShowInfo();
-        }
+ //       public string[] ShowInfo()
+//        {
+//            return _strategy.ShowInfo();
+ //       }
     }
 }

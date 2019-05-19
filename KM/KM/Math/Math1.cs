@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,17 +11,12 @@ namespace KM
     {
         private TableObject[] tableObjects;
 
-        public string[] ShowInfo()
-        {
-            return null;
-        }
-
         public object[] GetResult()
         {
             return tableObjects;
         }
 
-        public void Process()
+        public Status Process()
         {
             Random rand = new Random();
             tableObjects = new TableObject[Input.ResearchCount];
@@ -53,6 +49,15 @@ namespace KM
                     Y = yRandom
                 };
             }
+            return GenerateStatus(true);
+        }
+
+        private Status GenerateStatus(bool isSuccess)
+        {
+            Status status = new Status();
+            status.isSuccsess = isSuccess;
+            status.messages = new string[]{"Element 1", "ok"};
+            return status;
         }
     }
 }
