@@ -70,7 +70,7 @@ namespace KM.View
 
             mainTable = new DataGridView
             {
-                EnableHeadersVisualStyles = true,
+                EnableHeadersVisualStyles = false,
                 Size = new Size(9 * form.Width / 10, 3 * form.Height / 5),
                 Location = new Point(form.Width / 20, form.Height / 6),
                 BackColor = Color.FromArgb(237, 255, 236), //white-bit green
@@ -96,10 +96,33 @@ namespace KM.View
     
         private void TableCreate()
         {
+            var lightStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(237, 255, 236),
+                ForeColor = Color.FromArgb(72, 67, 92),
+                SelectionBackColor = Color.FromArgb(237, 255, 236),
+                SelectionForeColor = Color.FromArgb(72, 67, 92)
+            };
+            var darkStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(72, 67, 92),
+                ForeColor = Color.FromArgb(237, 255, 236),
+                SelectionBackColor = Color.FromArgb(72, 67, 92),
+                SelectionForeColor = Color.FromArgb(237, 255, 236)
+            };
+            var headerStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(97, 231, 134), //green
+                ForeColor = Color.FromArgb(72, 67, 92),
+            };
+
             tableObjects = _mangeService.GetResultFromStep(0) as TableObject[];
 
             mainTable.ColumnCount = Input.XCount + Input.YCount + 1;
             mainTable.RowCount = Input.ResearchCount;
+
+            mainTable.ColumnHeadersDefaultCellStyle = headerStyle;
+            mainTable.RowHeadersVisible = false;
 
             mainTable.Columns[0].Name = "N";
             for (int i = 1; i <= Input.XCount; i++)
@@ -120,6 +143,11 @@ namespace KM.View
                         mainTable.Rows[i].Cells[j].Value = tableObjects[i].X[j - 1];
                     else
                         mainTable.Rows[i].Cells[j].Value = tableObjects[i].Y[j - Input.XCount - 1];
+
+                    if (i % 2 == 0)
+                        mainTable.Rows[i].Cells[j].Style = lightStyle;
+                    else
+                        mainTable.Rows[i].Cells[j].Style = darkStyle;
                 }
             }
 
