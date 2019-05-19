@@ -10,5 +10,6 @@ namespace KM.Services
     {
         string[] ProcessNext();
         string[] StartFromTheBeggining();
+        object[] GetResultFromStep(int stepIndex);
     }
 }
