@@ -9,6 +9,7 @@ namespace KM
     interface IMathStrategy
     {
         string[] ShowInfo();
+        void Process();
         object[] GetResult();
     }
 

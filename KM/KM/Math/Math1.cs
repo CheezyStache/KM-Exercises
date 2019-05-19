@@ -8,6 +8,8 @@ namespace KM
 {
     class Math1: IMathStrategy
     {
+        private TableObject[] tableObjects;
+
         public string[] ShowInfo()
         {
             return null;
@@ -15,8 +17,13 @@ namespace KM
 
         public object[] GetResult()
         {
+            return tableObjects;
+        }
+
+        public void Process()
+        {
             Random rand = new Random();
-            TableObject[] tableObjects = new TableObject[Input.ResearchCount];
+            tableObjects = new TableObject[Input.ResearchCount];
 
             for (int i = 0; i < Input.ResearchCount; i++)
             {
@@ -46,8 +53,6 @@ namespace KM
                     Y = yRandom
                 };
             }
-
-            return tableObjects;
         }
     }
 }
