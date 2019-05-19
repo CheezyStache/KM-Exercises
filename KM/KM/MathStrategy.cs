@@ -9,6 +9,7 @@ namespace KM
     interface IMathStrategy
     {
         string[] ShowInfo();
+        Object[] GetResult();
     }
 
     class MathContext
