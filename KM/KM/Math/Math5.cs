@@ -19,12 +19,37 @@ namespace KM
 
         public object[] GetResult()
         {
-            throw new NotImplementedException();
+            return new Object[] { };
         }
 
         public Status Process()
         {
-            throw new NotImplementedException();
+            double[] arrayB = manageService.GetResultFromStep(2).Cast<double>().ToArray();
+            double[] arrayS0 = manageService.GetResultFromStep(3).Cast<double>().ToArray();
+            double s0 = arrayS0[0];
+            double sbi;
+            double[] tip = new double[arrayB.Length];
+            bool success = false;
+
+            //calculate sbi^2
+            sbi = s0 / arrayB.Length;
+
+            //calculate tip
+            double rootS0 = Math.Pow(s0, (1 / 2));
+            for (int i = 0; i < tip.Length; ++i)
+            {
+                tip[i] = Math.Abs(arrayB[i]) / rootS0;
+            }
+
+            //place to STUDENT
+
+            //calculate deltaB
+
+            //calculate absolute value
+            
+
+
+            return GenerateStatus(success);
         }
 
         public string GetName()
@@ -36,5 +61,14 @@ namespace KM
         {
             throw new NotImplementedException();
         }
+
+        private Status GenerateStatus(bool isSuccess)
+        {
+            Status status = new Status();
+            status.isSuccsess = isSuccess;
+            status.messages = new string[] { "Element 5", "ok" };
+            return status;
+        }
+
     }
 }
