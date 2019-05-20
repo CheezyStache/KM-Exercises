@@ -46,10 +46,10 @@ namespace KM
             switch (counter)
             {
                 case 0:
-                    vc.SetView(new ViewTableInput());
+                    vc.SetView(new ViewGenerationChoose());
                     break;
                 case 1:
-                    vc.SetView(new ViewGenerationChoose());
+                    vc.SetView(new ViewTableInput());
                     break;
                 default:
                     vc.SetView(new ViewTextInfo(counter, manageService.GetNameFromStep(counter)));
