@@ -36,6 +36,27 @@ namespace KM
         public static double[,] ZeroAndInterval { get; set; }
 
         public static bool[][] GenerationX { get; set; }
+
+        private static Dictionary<int, Dictionary<int, double>> fisherTable;
+
+        static Input()
+        {
+            fisherTable = new Dictionary<int, Dictionary<int, double>>();
+
+            Dictionary<int, double> fisherRow = new Dictionary<int, double>();
+            fisherRow.Add(1, 161);
+            fisherRow.Add(2, 200);
+
+            fisherTable.Add(1, fisherRow);
+
+            fisherRow = new Dictionary<int, double>();
+            fisherTable.Add(2, fisherRow);
+        }
+
+        public static double GetFisherTableValue(int f1, int f2)
+        {
+            return fisherTable[f2][f1];
+        }
     }
 
     public class TableObject
