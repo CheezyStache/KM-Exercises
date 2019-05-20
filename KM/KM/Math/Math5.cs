@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KM.Model;
 using KM.Services;
+using Accord.Statistics.Distributions.Univariate;
 
 namespace KM
 {
@@ -43,6 +44,8 @@ namespace KM
 
             //place to STUDENT
 
+            var t_tabular = Student(0.05, Input.ResearchCount * (Input.YCount - 1));
+
             //calculate deltaB
 
             //calculate absolute value
@@ -68,6 +71,12 @@ namespace KM
             status.isSuccsess = isSuccess;
             status.messages = new string[] { "Element 5", "ok" };
             return status;
+        }
+
+        public static double Student(double significance_level, int degrees_of_freedom)
+        {
+            var td = new TDistribution(degrees_of_freedom);
+            return Math.Abs(td.InverseDistributionFunction(significance_level));
         }
 
     }
