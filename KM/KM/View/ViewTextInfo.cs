@@ -20,19 +20,23 @@ namespace KM.View
 
         private string _operationName;
         private string[] _info;
+        private int currentStepIndex;
 
         private ManageService _manageService;
         private Form1 _form;
 
-        public ViewTextInfo(string[] info, string operation)
+        public ViewTextInfo(int currentStepIndex, string operation)
         {
-            _info = info;
+            this.currentStepIndex = currentStepIndex;
             _operationName = operation;
         }
 
         public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _manageService = manageService;
+            _manageService.ProcessNext();
+            _info = _manageService.GetStringResultFromStep(currentStepIndex);
+
             _form = form as Form1;
 
             mainPanel = new Panel
@@ -136,7 +140,6 @@ namespace KM.View
             }
 
             _manageService.ChangeButtons(next, prev);
-            _manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)

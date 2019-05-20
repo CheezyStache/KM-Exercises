@@ -13,7 +13,7 @@ namespace KM
 
         private static int N;
 
-        public static int ResearchCount
+        public static int ResearchCount //количество экспериментов
         {
             get { return N; }
             set { N = value; }
@@ -27,7 +27,7 @@ namespace KM
 
         public static int YCount { get; set; }
 
-        public static int GenerationRatio
+        public static int GenerationRatio // параметры
         {
             get { return l; }
             set { l = value; }

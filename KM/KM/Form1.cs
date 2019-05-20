@@ -52,7 +52,7 @@ namespace KM
                     vc.SetView(new ViewGenerationChoose());
                     break;
                 default:
-                    vc.SetView(new ViewTextInfo(manageService.GetStringResultFromStep(counter), manageService.GetNameFromStep(counter)));
+                    vc.SetView(new ViewTextInfo(counter, manageService.GetNameFromStep(counter)));
                     break;
             }
         }

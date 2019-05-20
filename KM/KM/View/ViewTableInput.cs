@@ -102,7 +102,7 @@ namespace KM.View
             TableCreate();
 
             _manageService.ChangeButtons(next);
-            _manageService.ProcessNext();
+            //_manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)

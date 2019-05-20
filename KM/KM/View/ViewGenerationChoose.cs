@@ -151,7 +151,7 @@ namespace KM.View
                 }
             }
 
-           _form.NextPage();
+            _form.NextPage();
            _form.ChangePage();
         }
 
