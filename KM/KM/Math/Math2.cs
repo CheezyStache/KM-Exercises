@@ -19,11 +19,13 @@ namespace KM
 
         public object[] GetResult()
         {
+            //TODO planValues should be returned
             return Input.GenerationX;
         }
 
         public Status Process()
         {
+            //Port logic for planValues to this class
             Status status = new Status();
             status.isSuccsess = true;
             status.messages = new string[] { "Element 2", "ok" };

@@ -23,7 +23,7 @@ namespace KM
 
         public object[] GetResult()
         {
-            return planValues;
+            return new object[] { coefsRegr };
         }
 
         public Status Process()
