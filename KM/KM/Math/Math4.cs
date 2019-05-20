@@ -99,8 +99,8 @@ namespace KM
         {
             var fst_degree = (observations_number - 1);
             var snd_degree = (groups_number - 1) * (observations_number - 1);
-            var fd = new FDistribution(fst_degree, snd_degree);
-            var fisher_value = fd.QuantileDensityFunction(significance_level);
+            var fd = new FDistribution(snd_degree, fst_degree);
+            var fisher_value = 1 / fd.InverseDistributionFunction(significance_level / groups_number);
             var result = 1 / (1 + (groups_number - 1) / fisher_value);
             return result;
         }
