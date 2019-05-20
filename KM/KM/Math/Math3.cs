@@ -14,6 +14,7 @@ namespace KM
         private int[][] planValues; // матрица планирования(+1, -1)
 
         private bool[][] GenerationRel;
+        private double[] coefsRegr;
 
         public Math3(ManageService manageService)
         {
@@ -81,7 +82,28 @@ namespace KM
                 }
             }
 
+            CalculateCoefs();
+
             return GenerateStatus(true);
+        }
+
+        private void CalculateCoefs()
+        {
+            //TODO вместо иксов planValues
+            TableObject[] inputTable =  (TableObject[])manageService.GetResultFromStep(0);
+            coefsRegr = new double[Input.XCount + Input.GenerationRatio + 1];
+
+            for (int i = 0; i < coefsRegr.Length; ++i)
+            {
+                coefsRegr[i] = 0;
+
+                for (int j = 0; j < Input.ResearchCount; ++j)
+                {
+                    coefsRegr[i] += planValues[i][j] * inputTable[j].Y[inputTable[j].Y.Length - 1];
+                }
+
+                coefsRegr[i] /= Input.ResearchCount;
+            }
         }
 
         private int AssignValueAndDecrement(int i, int j, int count,int value)
