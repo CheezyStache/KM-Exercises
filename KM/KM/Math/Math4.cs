@@ -99,10 +99,16 @@ namespace KM
         {
             var fst_degree = (groups_number - 1) * (observations_number - 1);
             var snd_degree = (observations_number - 1);
-            var fd = new FDistribution(fst_degree, snd_degree);
-            var fisher_value = 1 / fd.InverseDistributionFunction(significance_level / groups_number);
+            var fisher_value = Fisher(significance_level / groups_number, fst_degree, snd_degree);
             var result = 1 / (1 + (groups_number - 1) / fisher_value);
             return result;
+        }
+
+        public static double Fisher(double significance_level, int fst_degree, int snd_degree)
+        {
+            var fd = new FDistribution(fst_degree, snd_degree);
+            var fisher_value = 1 / fd.InverseDistributionFunction(significance_level);
+            return fisher_value;
         }
     }
 }
