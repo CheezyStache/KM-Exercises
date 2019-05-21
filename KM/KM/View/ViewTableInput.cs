@@ -19,6 +19,7 @@ namespace KM.View
 
         private Button next;
         private Button home;
+        private Button prev;
         private Label operationName;
         private Panel mainPanel;
 
@@ -69,6 +70,22 @@ namespace KM.View
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
+            prev = new Button
+            {
+                Text = "Предыдущая страница",
+                Width = operationName.Width / 4,
+                Height = operationName.Height,
+                Location = new Point(form.Width / 20 + 3 * operationName.Width / 8, 8 * form.Height / 10),
+                BackColor = Color.FromArgb(72, 67, 92), //darker-gray
+                Font = new Font("Times New Roman", 14, FontStyle.Regular),
+                ForeColor = Color.FromArgb(237, 255, 236),
+                FlatStyle = FlatStyle.Flat
+            };
+            prev.FlatAppearance.BorderSize = 0;
+            prev.Click += Prev_Click;
+            mainPanel.Controls.Add(prev);
+            allFormElements.Add(prev);
+
             home = new Button
             {
                 Text = "Начать заново",
@@ -99,10 +116,10 @@ namespace KM.View
             mainPanel.Controls.Add(mainTable);
             allFormElements.Add(mainTable);
             
-            TableCreate();
+            //TableCreate();
 
-            _manageService.ChangeButtons(next);
-            //_manageService.ProcessNext();
+            _manageService.ChangeButtons(next, prev);
+            _manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)
@@ -115,7 +132,13 @@ namespace KM.View
             _form.NextPage();
             _form.ChangePage();
         }
-    
+
+        private void Prev_Click(object sender, EventArgs e)
+        {
+            _form.PrevPage();
+            _form.ChangePage();
+        }
+
         private void TableCreate()
         {
             var lightStyle = new DataGridViewCellStyle

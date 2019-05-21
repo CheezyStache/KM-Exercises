@@ -127,4 +127,10 @@ namespace KM
         public double[] X { get; set; }
         public double[] Y { get; set; }
     }
+
+    public struct Generation
+    {
+        public int XNumber { get; set; }
+        public int[] ReferenceX { get; set; }
+    }
 }

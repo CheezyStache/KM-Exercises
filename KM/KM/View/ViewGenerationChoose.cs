@@ -15,7 +15,6 @@ namespace KM.View
 
         private Button next;
         private Button home;
-        private Button prev;
         private Label operationName;
         private Panel mainPanel;
 
@@ -88,22 +87,6 @@ namespace KM.View
             mainPanel.Controls.Add(home);
             allFormElements.Add(home);
 
-            prev = new Button
-            {
-                Text = "Предыдущая страница",
-                Width = operationName.Width / 4,
-                Height = operationName.Height,
-                Location = new Point(form.Width / 20 + 3 * operationName.Width / 8, 8 * form.Height / 10),
-                BackColor = Color.FromArgb(72, 67, 92), //darker-gray
-                Font = new Font("Times New Roman", 14, FontStyle.Regular),
-                ForeColor = Color.FromArgb(237, 255, 236),
-                FlatStyle = FlatStyle.Flat
-            };
-            prev.FlatAppearance.BorderSize = 0;
-            prev.Click += Prev_Click;
-            mainPanel.Controls.Add(prev);
-            allFormElements.Add(prev);
-
             inputPanel = new Panel
             {
                 Size = new Size(9 * form.Width / 10, 3 * form.Height / 5),
@@ -123,14 +106,8 @@ namespace KM.View
                 AddLabelList(out labels[i], out checkedListBoxes[i], out textBoxes[i], inputPanel, allFormElements, i, "x" + (i + 1 + Input.XCount), i);
             }
 
-            _manageService.ChangeButtons(next, prev);
+            _manageService.ChangeButtons(next);
             _manageService.ProcessNext();
-        }
-
-        private void Prev_Click(object sender, EventArgs e)
-        {
-            _form.PrevPage();
-            _form.ChangePage();
         }
 
         private void Home_Click(object sender, EventArgs e)
@@ -143,7 +120,7 @@ namespace KM.View
             Input.GenerationX = new bool[checkedListBoxes.Length][];
             for (int i = 0; i < checkedListBoxes.Length; i++)
             {
-                Input.GenerationX[i] = new bool[checkedListBoxes[i].Items.Count];
+                Input.GenerationX[i] = new bool[checkedListBoxes[i].Items.Count + 1];
                 for (int j = 0; j < checkedListBoxes[i].Items.Count; j++)
                 {
                     if (checkedListBoxes[i].GetItemChecked(j))
@@ -185,19 +162,37 @@ namespace KM.View
 
             if (Input.GenerationX != null)
             {
-                for (int j = 0; j < Input.XCount; j++)
+                for (int j = 0; j < Input.XCount + 1; j++)
                 {
-                    if (Input.GenerationX[i][j])
-                        c.Items.Add("x" + (j + 1), true);
+                    if (j != Input.XCount)
+                    {
+                        if (Input.GenerationX[i][j])
+                            c.Items.Add("x" + (j + 1), true);
+                        else
+                            c.Items.Add("x" + (j + 1), false);
+                    }
                     else
-                        c.Items.Add("x" + (j + 1), false);
+                    {
+                        if (Input.GenerationX[i][j])
+                            c.Items.Add("-", true);
+                        else
+                            c.Items.Add("-", false);
+                    }
+
                 }
             }
             else
             {
-                for (int j = 0; j < Input.XCount; j++)
+                for (int j = 0; j < Input.XCount + 1; j++)
                 {
-                    c.Items.Add("x" + (j + 1));
+                    if (j != Input.XCount)
+                    {
+                        c.Items.Add("x" + (j + 1));
+                    }
+                    else
+                    {
+                        c.Items.Add("-");
+                    }
                 }
             }
 
@@ -228,12 +223,20 @@ namespace KM.View
 
                 if(checkedListBoxes[index].GetItemChecked(i))
                 {
-                    textBoxes[index].Text += "x" + (i + 1);
+                    if(i != checkedListBoxes[index].Items.Count - 1)
+                        textBoxes[index].Text += "x" + (i + 1);
+                    else
+                        textBoxes[index].Text = textBoxes[index].Text.Replace("= ", "=  -");
                     continue;
                 }
 
-                if(e.NewValue == CheckState.Checked && i == e.Index)
-                    textBoxes[index].Text += "x" + (i + 1);
+                if (e.NewValue == CheckState.Checked && i == e.Index)
+                {
+                    if (i != checkedListBoxes[index].Items.Count - 1)
+                        textBoxes[index].Text += "x" + (i + 1);
+                    else
+                        textBoxes[index].Text = textBoxes[index].Text.Replace("= ", "=  -");
+                }
             }
         }
     }
