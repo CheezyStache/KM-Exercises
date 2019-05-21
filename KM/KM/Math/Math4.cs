@@ -12,7 +12,7 @@ namespace KM
     class Math4 : IMathStrategy
     {
         private ManageService manageService;
-        private double s0;
+        private double s0 = 0;
 
         public Math4(ManageService manageService)
         {
@@ -38,7 +38,7 @@ namespace KM
 
             for (int i = 0; i < tableAll.Length; ++i)
             {
-                //????????????????????????????????????????????????????????????????????
+                //???
                 double[] yTemp = tableAll[i].Y.Take(tableAll[i].Y.Length - 1).Cast<double>().ToArray();
                 yCollection.Add(i, yTemp);
             }
@@ -64,13 +64,16 @@ namespace KM
             sSum = s.Sum();
             g = sMax / sSum;
 
-            //place to KOXPEH
-
+            //KOXPEH
             var g_tabular = Cochran(0.05, Input.YCount, Input.ResearchCount);
 
             //if yes caclulate s0^2
-            s0 = sSum / s.Length;
-
+            if(g < g_tabular)
+                {
+                success = true;
+                s0 = sSum / s.Length;
+                }
+        
 
             return GenerateStatus(success);
 
