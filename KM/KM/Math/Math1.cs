@@ -90,6 +90,7 @@ namespace KM
             yRandom1[1] = 6.26;
             yRandom1[2] = 6.45;
             tableObjects[7].Y = yRandom1;*/
+
             return GenerateStatus(true);
         }
 
