@@ -19,6 +19,8 @@ namespace KM
 
         private int counter = 0;
 
+        private bool[] counterCheck;
+
         private ViewContext vc;
         private ManageService manageService;
 
@@ -32,6 +34,7 @@ namespace KM
         {
             Size = new Size(width, height);
             manageService = new ManageService();
+            counterCheck = new bool[7];
 
             vc = new ViewContext(new ViewStartInput(), this, manageService);
         }
@@ -61,6 +64,12 @@ namespace KM
         {
             if(counter < 6)
                 counter++;
+
+            if (!counterCheck[counter])
+            {
+                counterCheck[counter] = true;
+                manageService.ProcessNext();
+            }
         }
 
         public void PrevPage()
