@@ -117,7 +117,7 @@ namespace KM.View
             Input.GenerationX = new bool[checkedListBoxes.Length][];
             for (int i = 0; i < checkedListBoxes.Length; i++)
             {
-                Input.GenerationX[i] = new bool[checkedListBoxes[i].Items.Count + 1];
+                Input.GenerationX[i] = new bool[checkedListBoxes[i].Items.Count];
                 for (int j = 0; j < checkedListBoxes[i].Items.Count; j++)
                 {
                     if (checkedListBoxes[i].GetItemChecked(j))
