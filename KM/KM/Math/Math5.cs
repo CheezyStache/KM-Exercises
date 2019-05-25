@@ -42,10 +42,10 @@ namespace KM
 
             //calculate tip
             //double rootS0 = Math.Pow(s0, (1 / 2));
-            double rootS0 = Math.Sqrt(s0);
+            double rootSbi = Math.Sqrt(sbi);
             for (int i = 0; i < tip.Length; ++i)
             {
-                tip[i] = Math.Abs(arrayB[i]) / rootS0;
+                tip[i] = Math.Abs(arrayB[i]) / rootSbi;
             }
 
             //place to STUDENT
@@ -53,7 +53,7 @@ namespace KM
             var t_tabular = Student(0.025, Input.ResearchCount * (Input.YCount - 1));
 
             //calculate deltaB
-            deltaB = Math.Abs(t_tabular * sbi);
+            deltaB = Math.Abs(t_tabular * rootSbi);
 
             //calculate absolute value
             for(int i = 0; i < tip.Length; ++i)
