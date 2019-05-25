@@ -9,7 +9,7 @@ namespace KM
 {
     class Math1: IMathStrategy
     {
-        private TableObject[] tableObjects;
+        TableObject[] tableObjects;
 
         public object[] GetResult()
         {
@@ -40,12 +40,12 @@ namespace KM
                     else
                     {
                         yRandom[j] = yRandom.Where((arr, k) => k != yRandom.Length - 1).Average();
+                        yRandom[j] = Math.Round(yRandom[j], 3);
                     }
                 }
                 tableObjects[i] = new TableObject
                 {
                     Number = i + 1,
-                    X = xRandom,
                     Y = yRandom
                 };
             }
@@ -62,7 +62,7 @@ namespace KM
 
         public string GetName()
         {
-            return "Таблица исходных данных";
+            return "Выбор генерирующих соотношений";
         }
 
         public string[] GetStringResult()

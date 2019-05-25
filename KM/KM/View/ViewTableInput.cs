@@ -70,7 +70,7 @@ namespace KM.View
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
-            prev = new Button
+            /*prev = new Button
             {
                 Text = "Предыдущая страница",
                 Width = operationName.Width / 4,
@@ -84,7 +84,7 @@ namespace KM.View
             prev.FlatAppearance.BorderSize = 0;
             prev.Click += Prev_Click;
             mainPanel.Controls.Add(prev);
-            allFormElements.Add(prev);
+            allFormElements.Add(prev);*/
 
             home = new Button
             {
@@ -116,7 +116,7 @@ namespace KM.View
             mainPanel.Controls.Add(mainTable);
             allFormElements.Add(mainTable);
             
-            //TableCreate();
+            TableCreate();
 
             _manageService.ChangeButtons(next, prev);
             _manageService.ProcessNext();
@@ -161,33 +161,33 @@ namespace KM.View
                 ForeColor = Color.FromArgb(72, 67, 92),
             };
 
-            tableObjects = _manageService.GetResultFromStep(0) as TableObject[];
+            tableObjects = _manageService.GetResultFromStep(1) as TableObject[];
 
-            mainTable.ColumnCount = Input.XCount + Input.YCount + 1;
+            mainTable.ColumnCount = tableObjects[0].X.Length + tableObjects[0].Y.Length + 1;
             mainTable.RowCount = Input.ResearchCount;
 
             mainTable.ColumnHeadersDefaultCellStyle = headerStyle;
             mainTable.RowHeadersVisible = false;
 
             mainTable.Columns[0].Name = "N";
-            for (int i = 1; i <= Input.XCount; i++)
-                mainTable.Columns[i].Name = "x" + i;
-            for (int i = 1; i <= Input.YCount; i++)
-                if(i != Input.YCount)
-                    mainTable.Columns[i + Input.XCount].Name = "y" + i;
+            for (int i = 1; i <= tableObjects[0].X.Length; i++)
+                mainTable.Columns[i].Name = "x" + (i - 1);
+            for (int i = 1; i <= tableObjects[0].Y.Length; i++)
+                if(i != tableObjects[0].Y.Length)
+                    mainTable.Columns[i + tableObjects[0].X.Length].Name = "y" + i;
                 else
-                    mainTable.Columns[i + Input.XCount].Name = "y ср.";
+                    mainTable.Columns[i + tableObjects[0].X.Length].Name = "y ср.";
 
             for (int i = 0; i < tableObjects.Length; i++)
             {
-                for(int j = 0; j < Input.XCount + Input.YCount + 1; j++)
+                for(int j = 0; j < tableObjects[i].X.Length + tableObjects[i].Y.Length + 1; j++)
                 {
                     if (j == 0)
                         mainTable.Rows[i].Cells[j].Value = tableObjects[i].Number;
-                    else if(j < Input.XCount + 1)
+                    else if(j < tableObjects[i].X.Length + 1)
                         mainTable.Rows[i].Cells[j].Value = tableObjects[i].X[j - 1];
                     else
-                        mainTable.Rows[i].Cells[j].Value = tableObjects[i].Y[j - Input.XCount - 1];
+                        mainTable.Rows[i].Cells[j].Value = tableObjects[i].Y[j - tableObjects[i].X.Length - 1];
 
                     if (i % 2 == 0)
                         mainTable.Rows[i].Cells[j].Style = lightStyle;

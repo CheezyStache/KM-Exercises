@@ -124,7 +124,7 @@ namespace KM
     public class TableObject
     {
         public int Number { get; set; }
-        public double[] X { get; set; }
+        public int[] X { get; set; }
         public double[] Y { get; set; }
     }
 

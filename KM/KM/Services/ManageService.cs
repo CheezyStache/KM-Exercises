@@ -19,7 +19,7 @@ namespace KM.Services
         {
             /*this.nextButton = nextButton;
             this.goBackButon = goBackButon;*/
-            mathStrategies = new IMathStrategy[] { new Math2(this), new Math1(), new Math3(this), new Math4(this), new Math5(this), new Math6(this) };
+            mathStrategies = new IMathStrategy[] { new Math1(), new Math2(this), new Math3(this), new Math4(this), new Math5(this), new Math6(this) };
         }
 
         public object[] GetResultFromStep(int stepIndex)
