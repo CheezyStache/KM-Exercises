@@ -49,6 +49,47 @@ namespace KM
                     Y = yRandom
                 };
             }
+            //Mock data
+            /*double[] yRandom1 = new double[3];
+            yRandom1[0] = 1.09;
+            yRandom1[1] = 0.71;
+            yRandom1[2] = 0.9;
+            tableObjects[0].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 1.34;
+            yRandom1[1] = 0.94;
+            yRandom1[2] = 1.14;
+            tableObjects[1].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 3.07;
+            yRandom1[1] = 2.65;
+            yRandom1[2] = 2.86;
+            tableObjects[2].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 3.42;
+            yRandom1[1] = 3.02;
+            yRandom1[2] = 3.22;
+            tableObjects[3].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 2.9;
+            yRandom1[1] = 2.5;
+            yRandom1[2] = 2.7;
+            tableObjects[4].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 3.01;
+            yRandom1[1] = 2.59;
+            yRandom1[2] = 2.8;
+            tableObjects[5].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 3.74;
+            yRandom1[1] = 3.34;
+            yRandom1[2] = 3.54;
+            tableObjects[6].Y = yRandom1;
+            yRandom1 = new double[3];
+            yRandom1[0] = 6.64;
+            yRandom1[1] = 6.26;
+            yRandom1[2] = 6.45;
+            tableObjects[7].Y = yRandom1;*/
             return GenerateStatus(true);
         }
 

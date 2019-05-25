@@ -161,7 +161,7 @@ namespace KM.View
                 ForeColor = Color.FromArgb(72, 67, 92),
             };
 
-            tableObjects = _manageService.GetResultFromStep(1) as TableObject[];
+            tableObjects = _manageService.GetResultFromStep(0) as TableObject[];
 
             mainTable.ColumnCount = tableObjects[0].X.Length + tableObjects[0].Y.Length + 1;
             mainTable.RowCount = Input.ResearchCount;
