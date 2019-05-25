@@ -12,6 +12,7 @@ namespace KM
     {
         private ManageService manageService;
         private double dispAdekvat;
+        Status status;
 
         public Math6(ManageService manageService)
         {
@@ -30,7 +31,7 @@ namespace KM
             double[] arrayS0 = manageService.GetResultFromStep(3).Cast<double>().ToArray();
             double s0 = arrayS0[0];
 
-            Status status = new Status();
+            status = new Status();
 
             dispAdekvat = 0;
 
@@ -80,12 +81,12 @@ namespace KM
 
         public string GetName()
         {
-            throw new NotImplementedException();
+            return "Проверка модели на адекватность";
         }
 
         public string[] GetStringResult()
         {
-            throw new NotImplementedException();
+            return status.messages;
         }
     }
 }
