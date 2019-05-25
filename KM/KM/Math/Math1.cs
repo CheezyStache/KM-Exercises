@@ -50,7 +50,7 @@ namespace KM
                 };
             }
             //Mock data
-            /*double[] yRandom1 = new double[3];
+            double[] yRandom1 = new double[3];
             yRandom1[0] = 1.09;
             yRandom1[1] = 0.71;
             yRandom1[2] = 0.9;
@@ -89,7 +89,7 @@ namespace KM
             yRandom1[0] = 6.64;
             yRandom1[1] = 6.26;
             yRandom1[2] = 6.45;
-            tableObjects[7].Y = yRandom1;*/
+            tableObjects[7].Y = yRandom1;
 
             return GenerateStatus(true);
         }

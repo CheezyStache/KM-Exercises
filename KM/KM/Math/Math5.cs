@@ -38,10 +38,11 @@ namespace KM
             List<int> errIndexes = new List<int>();
 
             //calculate sbi^2
-            sbi = s0 / arrayB.Length;
+            sbi = s0 / Input.ResearchCount;
 
             //calculate tip
-            double rootS0 = Math.Pow(s0, (1 / 2));
+            //double rootS0 = Math.Pow(s0, (1 / 2));
+            double rootS0 = Math.Sqrt(s0);
             for (int i = 0; i < tip.Length; ++i)
             {
                 tip[i] = Math.Abs(arrayB[i]) / rootS0;
