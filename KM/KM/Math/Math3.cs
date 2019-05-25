@@ -71,7 +71,21 @@ namespace KM
 
         public string[] GetStringResult()
         {
-            return new string[] { "Коэффициенты регресии:" + Environment.NewLine + String.Join(";" + Environment.NewLine, coefsRegr.Select(b => b.ToString())) };
+            string equation = "Уравнение регрессии: y = ";
+            for(int i = 0; i < coefsRegr.Length; ++i)
+            {
+                if (i == 0)
+                {
+                    equation += coefsRegr[i].ToString();
+                } else
+                {
+                    equation += " + " + coefsRegr[i].ToString() + "x" + i;
+                }
+            }
+            return new string[] { "Коэффициенты регресии:" + Environment.NewLine + String.Join(";" + Environment.NewLine, coefsRegr.Select(b => b.ToString())),
+            equation};
+
+
         }
     }
 }

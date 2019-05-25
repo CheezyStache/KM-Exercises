@@ -53,7 +53,8 @@ namespace KM
                 dispAdekvat += Math.Pow((inputTable[i].Y[inputTable[i].Y.Length - 1] - otklikValues[i]), 2);
             }
 
-            dispAdekvat *= Input.YCount / (Input.ResearchCount - (Input.XCount + Input.GenerationRatio + 1));
+            dispAdekvat *= Input.YCount;
+            dispAdekvat /= (Input.ResearchCount - (Input.XCount + Input.GenerationRatio + 1));
 
             if (dispAdekvat <= s0)
             {
@@ -63,7 +64,7 @@ namespace KM
             {
                 double fisherValue = dispAdekvat / s0;
                  
-                double fisher_table = Math4.Fisher(0.05, Input.ResearchCount - Input.XCount, Input.ResearchCount * (Input.YCount - 1));
+                double fisher_table = Math4.Fisher(0.05, Input.ResearchCount * (Input.YCount - 1), Input.ResearchCount - Input.XCount - 1);
                 //0.003 - znach Ftabl
                 if (fisherValue < fisher_table)
                 {
