@@ -25,7 +25,14 @@ namespace KM.View
 
         private ManageService _manageService;
 
+        private int _counter;
+
         private const string _operationName = "Таблица результатов";
+
+        public ViewTableInput(int counter)
+        {
+            _counter = counter;
+        }
 
         public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
@@ -119,7 +126,8 @@ namespace KM.View
             TableCreate();
 
             _manageService.ChangeButtons(next, prev);
-            _manageService.ProcessNext();
+            if(_manageService.GetResultFromStep(_counter + 1) == null)
+                _manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)
