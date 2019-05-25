@@ -49,7 +49,7 @@ namespace KM
                     vc.SetView(new ViewGenerationChoose());
                     break;
                 case 1:
-                    vc.SetView(new ViewTableInput());
+                    vc.SetView(new ViewTableInput(counter));
                     break;
                 default:
                     vc.SetView(new ViewTextInfo(counter, manageService.GetNameFromStep(counter)));

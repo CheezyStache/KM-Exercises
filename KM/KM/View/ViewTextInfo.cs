@@ -140,6 +140,8 @@ namespace KM.View
             }
 
             _manageService.ChangeButtons(next, prev);
+            if (_manageService.GetResultFromStep(currentStepIndex + 1) == null)
+                _manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)
