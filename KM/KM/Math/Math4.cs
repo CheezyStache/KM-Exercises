@@ -55,7 +55,7 @@ namespace KM
                 {
                     ySumAVG += Math.Pow(currentOne[j] - currentOne.Average(), 2);
                 }
-                s[i] = 1 / (m - 1) * ySumAVG;
+                s[i] = ySumAVG / (m - 1);
             }
 
             //count G
