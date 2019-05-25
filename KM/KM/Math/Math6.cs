@@ -63,16 +63,17 @@ namespace KM
             } else
             {
                 double fisherValue = dispAdekvat / s0;
-
+                 
+                double fisher_table = Math4.Fisher(0.05, Input.ResearchCount - Input.XCount, Input.ResearchCount * (Input.YCount - 1));
                 //0.003 - znach Ftabl
-                if (fisherValue < 0.003)
+                if (fisherValue < fisher_table)
                 {
                     status.isSuccsess = true;
-                    status.messages = new string[] { fisherValue + "<=" + 0.003 + "Модель адекватна." };
+                    status.messages = new string[] { fisherValue + "<=" + fisher_table + "Модель адекватна." };
                 } else
                 {
                     status.isSuccsess = false;
-                    status.messages = new string[] { fisherValue + ">=" + 0.003 + "Модель неадекватна." };
+                    status.messages = new string[] { fisherValue + ">=" + fisher_table + "Модель неадекватна." };
                 }
             }
 

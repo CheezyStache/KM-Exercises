@@ -14,6 +14,7 @@ namespace KM
         private ManageService manageService;
         private int[] rghtInd;
         private int[] errInd;
+        Status status;
 
         public Math5(ManageService manageService)
         {
@@ -68,25 +69,41 @@ namespace KM
             rghtInd = rightIndexes.ToArray();
             errInd = errIndexes.ToArray();
 
+            if (!errInd.Any())
+            {
+                success = true;
+            }
 
-            return GenerateStatus(success);
+            return GenerateStatus(success, arrayB, deltaB, tip, t_tabular);
         }
 
         public string GetName()
         {
-            throw new NotImplementedException();
+            return "Проверка значимости коэффициентов";
         }
 
         public string[] GetStringResult()
         {
-            throw new NotImplementedException();
+            return status.messages;
         }
 
-        private Status GenerateStatus(bool isSuccess)
+        private Status GenerateStatus(bool isSuccess, double[] arrayB, double deltaB, double[] tip, double t_tabular)
         {
-            Status status = new Status();
+            status = new Status();
             status.isSuccsess = isSuccess;
-            status.messages = new string[] { "Element 5", "ok" };
+
+            status.messages = new string[] { "Проверка значимости коэффициентов:" + Environment.NewLine };
+
+            status.messages[0] += String.Join(";" + Environment.NewLine, rghtInd.Select(b => "Коэффициент "  + arrayB[b] + " значим, поскольку " +
+            Math.Abs(arrayB[b]) + " > " + deltaB + " и " + tip[b] + " > " + t_tabular));
+            status.messages[0] += ";" + Environment.NewLine;
+
+            if (errInd.Any())
+            {
+                status.messages[0] += String.Join(";" + Environment.NewLine, errInd.Select(b => "Коэффициент " + arrayB[b] + " не значим по заданным условиям"));
+            }
+
+
             return status;
         }
 

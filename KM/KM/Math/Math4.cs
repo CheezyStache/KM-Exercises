@@ -13,6 +13,7 @@ namespace KM
     {
         private ManageService manageService;
         private double s0 = 0;
+        Status status;
 
         public Math4(ManageService manageService)
         {
@@ -69,32 +70,38 @@ namespace KM
 
             //if yes caclulate s0^2
             if(g < g_tabular)
-                {
+            {
                 success = true;
                 s0 = sSum / s.Length;
-                }
+            }
         
 
-            return GenerateStatus(success);
+            return GenerateStatus(success, g, g_tabular);
 
         }
 
         public string GetName()
         {
-            throw new NotImplementedException();
+            return "Однородность дисперсии";
         }
 
         public string[] GetStringResult()
         {
-            throw new NotImplementedException();
+            return status.messages;
         }
 
 
-        private Status GenerateStatus(bool isSuccess)
+        private Status GenerateStatus(bool isSuccess, double g, double g_tabular)
         {
-            Status status = new Status();
+            status = new Status();
             status.isSuccsess = isSuccess;
-            status.messages = new string[] { "Element 4", "ok" };
+            if (isSuccess)
+            {
+                status.messages = new string[] { g + " < " + g_tabular + Environment.NewLine + "Ошибка опыта: " + s0 };
+            } else
+            {
+                status.messages = new string[] { g + " > " + g_tabular + Environment.NewLine + "Условие не выполняется. Попробуйте увеличить число параллельных опытов." };
+            }
             return status;
         }
 
