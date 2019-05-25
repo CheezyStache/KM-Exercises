@@ -126,8 +126,6 @@ namespace KM.View
             TableCreate();
 
             _manageService.ChangeButtons(next, prev);
-            if(_manageService.GetResultFromStep(_counter + 1) == null)
-                _manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)

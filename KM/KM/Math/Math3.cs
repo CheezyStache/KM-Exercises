@@ -23,7 +23,9 @@ namespace KM
 
         public object[] GetResult()
         {
-            return new object[] { coefsRegr };
+            object[] object_array = new object[coefsRegr.Length];
+            coefsRegr.CopyTo(object_array, 0);
+            return object_array;
         }
 
         public Status Process()

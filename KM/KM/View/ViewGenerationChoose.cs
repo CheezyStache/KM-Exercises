@@ -105,6 +105,8 @@ namespace KM.View
             {
                 AddLabelList(out labels[i], out checkedListBoxes[i], out textBoxes[i], inputPanel, allFormElements, i, "x" + (i + 1 + Input.XCount), i);
             }
+
+            _manageService.ChangeButtons(next);
         }
 
         private void Home_Click(object sender, EventArgs e)
@@ -124,9 +126,6 @@ namespace KM.View
                         Input.GenerationX[i][j] = true;
                 }
             }
-
-            _manageService.ChangeButtons(next);
-            _manageService.ProcessNext();
 
             _form.NextPage();
            _form.ChangePage();

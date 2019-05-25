@@ -14,6 +14,8 @@ namespace KM.Services
         private Button goBackButon;
         private IMathStrategy[] mathStrategies;
         private int currentStepIndex;
+        private bool next;
+        private bool prev;
 
         public ManageService(/*Button nextButton, Button goBackButon*/)
         {
@@ -41,18 +43,20 @@ namespace KM.Services
         {
             if (currentStepIndex < 6)
             {
+                next = true;
+                prev = true;
                 Status processStatus = mathStrategies[currentStepIndex].Process();
 
                 if (processStatus.isSuccsess)
                 {
                     ++currentStepIndex;
-                    nextButton.Enabled = true;
+                    next = true;
                     if (goBackButon != null)
                         goBackButon.Enabled = true;
                 }
                 else
                 {
-                    nextButton.Enabled = false;
+                    next = false;
                 }
 
                 return processStatus.messages;
@@ -68,10 +72,14 @@ namespace KM.Services
             return ProcessNext();
         }
 
-        public void ChangeButtons(Button next, Button prev = null)
+        public void ChangeButtons(Button nextB, Button prevB = null)
         {
-            nextButton = next;
-            goBackButon = prev;
+            nextButton = nextB;
+            goBackButon = prevB;
+
+            nextButton.Enabled = next;
+            if(prevB != null)
+                goBackButon.Enabled = prev;
         }
     }
 }

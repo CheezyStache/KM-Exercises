@@ -34,7 +34,6 @@ namespace KM.View
         public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _manageService = manageService;
-            _manageService.ProcessNext();
             _info = _manageService.GetStringResultFromStep(currentStepIndex);
 
             _form = form as Form1;
@@ -140,8 +139,6 @@ namespace KM.View
             }
 
             _manageService.ChangeButtons(next, prev);
-            if (_manageService.GetResultFromStep(currentStepIndex + 1) == null)
-                _manageService.ProcessNext();
         }
 
         private void Home_Click(object sender, EventArgs e)
