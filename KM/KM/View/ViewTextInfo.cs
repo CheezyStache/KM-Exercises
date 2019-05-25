@@ -34,7 +34,6 @@ namespace KM.View
         public void MakeView(Form form, List<IDisposable> allFormElements, ManageService manageService)
         {
             _manageService = manageService;
-            _manageService.ProcessNext();
             _info = _manageService.GetStringResultFromStep(currentStepIndex);
 
             _form = form as Form1;
