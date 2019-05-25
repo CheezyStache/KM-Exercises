@@ -66,7 +66,7 @@ namespace KM
             g = sMax / sSum;
 
             //KOXPEH
-            var g_tabular = Cochran(0.05, Input.YCount, Input.ResearchCount);
+            var g_tabular = Cochran(0.05, Input.ResearchCount, Input.YCount);
 
             //if yes caclulate s0^2
             if(g < g_tabular)

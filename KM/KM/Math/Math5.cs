@@ -50,7 +50,7 @@ namespace KM
 
             //place to STUDENT
 
-            var t_tabular = Student(0.05, Input.ResearchCount * (Input.YCount - 1));
+            var t_tabular = Student(0.025, Input.ResearchCount * (Input.YCount - 1));
 
             //calculate deltaB
             deltaB = Math.Abs(t_tabular * sbi);
