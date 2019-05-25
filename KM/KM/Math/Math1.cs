@@ -19,7 +19,6 @@ namespace KM
 
         public Status Process()
         {
-
             var params_pairs = Input.ZeroAndInterval;
             var num_of_pairs = params_pairs.GetLength(0);
             var pairs_length = params_pairs.GetLength(1);
@@ -36,10 +35,13 @@ namespace KM
             tableObjects = new TableObject[Input.ResearchCount];
             for (int i = 0; i < Input.ResearchCount; i++)
             {
+                var sample = normal_distrib_generator.Generate(Input.YCount).ToList();
+                sample.Add(sample.Average());
+
                 tableObjects[i] = new TableObject
                 {
                     Number = i + 1,
-                    Y = normal_distrib_generator.Generate(Input.YCount)
+                    Y = sample.ToArray()
                 };
             };
 
