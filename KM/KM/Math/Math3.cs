@@ -37,12 +37,10 @@ namespace KM
 
         private void CalculateCoefs()
         {
-            //TODO вместо иксов planValues
-            TableObject[] inputTable =  manageService.GetResultFromStep(1) as TableObject[];
+            TableObject[] inputTable =  manageService.GetResultFromStep(0) as TableObject[];
             coefsRegr = new double[Input.XCount + Input.GenerationRatio + 1];
 
-            //TODO протестировать
-            /*for (int i = 0; i < coefsRegr.Length; ++i)
+            for (int i = 0; i < coefsRegr.Length; ++i)
             {
                 coefsRegr[i] = 0;
 
@@ -52,7 +50,7 @@ namespace KM
                 }
 
                 coefsRegr[i] /= Input.ResearchCount;
-            }*/
+            }
         }
 
         private Status GenerateStatus(bool isSuccess)
@@ -70,8 +68,7 @@ namespace KM
 
         public string[] GetStringResult()
         {
-            throw new NotImplementedException();
-            //return new string[]{ " " };
+            return new string[] { "Коэффициенты регресии: " + String.Join(", ", coefsRegr.Select(b => b.ToString())) };
         }
     }
 }

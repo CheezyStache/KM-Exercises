@@ -25,7 +25,7 @@ namespace KM
 
         public object[] GetResult()
         {
-            return tableObjects;
+            return planValues;
         }
 
         private void CalculatePlanValues()
