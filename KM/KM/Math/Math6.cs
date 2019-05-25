@@ -35,7 +35,6 @@ namespace KM
 
             dispAdekvat = 0;
 
-            //TODO вместо иксов planValues
             TableObject[] inputTable = (TableObject[])manageService.GetResultFromStep(0);
             double[] otklikValues = new double[Input.ResearchCount];
 
@@ -43,9 +42,9 @@ namespace KM
             {
                 otklikValues[i] = 0;
 
-                for (int j = 0; j < Input.ResearchCount; ++j)
+                for (int j = 0; j < coefRegr.Length; ++j)
                 {
-                    otklikValues[i] += planValues[i][j] * coefRegr[i];
+                    otklikValues[i] += planValues[j][i] * coefRegr[j];
                 }
             }
 
@@ -59,7 +58,7 @@ namespace KM
             if (dispAdekvat <= s0)
             {
                 status.isSuccsess = true;
-                status.messages = new string[] { dispAdekvat + "<=" + s0 + "Модель адекватна. s_ад^2 ≤ s_0^2. Тогда вывод об адекватности модели может быть сделан без проверки условия F_p< F_T" };
+                status.messages = new string[] { dispAdekvat + "<=" + s0 + Environment.NewLine + "Модель адекватна. s_ад^2 ≤ s_0^2. Тогда вывод об адекватности модели может быть сделан без проверки условия F_p< F_T" };
             } else
             {
                 double fisherValue = dispAdekvat / s0;
@@ -69,11 +68,11 @@ namespace KM
                 if (fisherValue < fisher_table)
                 {
                     status.isSuccsess = true;
-                    status.messages = new string[] { fisherValue + "<=" + fisher_table + "Модель адекватна." };
+                    status.messages = new string[] { fisherValue + "<=" + fisher_table + ". Модель адекватна." };
                 } else
                 {
                     status.isSuccsess = false;
-                    status.messages = new string[] { fisherValue + ">=" + fisher_table + "Модель неадекватна." };
+                    status.messages = new string[] { fisherValue + ">=" + fisher_table + ". Модель неадекватна." };
                 }
             }
 
