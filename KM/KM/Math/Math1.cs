@@ -19,8 +19,6 @@ namespace KM
 
         public Status Process()
         {
-            Random rand = new Random();
-            tableObjects = new TableObject[Input.ResearchCount];
 
             var params_pairs = Input.ZeroAndInterval;
             var num_of_pairs = params_pairs.GetLength(0);
@@ -35,6 +33,7 @@ namespace KM
             var y_std_dev = y_info[1];
             var normal_distrib_generator = new NormalDistribution(y_mean, y_std_dev);
 
+            tableObjects = new TableObject[Input.ResearchCount];
             for (int i = 0; i < Input.ResearchCount; i++)
             {
                 tableObjects[i] = new TableObject
