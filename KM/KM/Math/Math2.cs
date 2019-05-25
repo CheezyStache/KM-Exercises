@@ -77,7 +77,7 @@ namespace KM
                 for (int j = 0; j < Input.ResearchCount; ++j)
                 {
                     planValues[i][j] = 1;
-                    for (int k = 0; k < Input.GenerationX.Length - 1; ++k)
+                    for (int k = 0; k < Input.GenerationX[l].Length - 1; ++k)
                     {
                         if (Input.GenerationX[l][k])
                         {
