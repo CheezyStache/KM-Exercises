@@ -50,6 +50,7 @@ namespace KM
                 }
 
                 coefsRegr[i] /= Input.ResearchCount;
+                coefsRegr[i] = Math.Round(coefsRegr[i], 3);
             }
         }
 
@@ -68,7 +69,7 @@ namespace KM
 
         public string[] GetStringResult()
         {
-            return new string[] { "Коэффициенты регресии: " + String.Join(", ", coefsRegr.Select(b => b.ToString())) };
+            return new string[] { "Коэффициенты регресии:" + Environment.NewLine + String.Join(";" + Environment.NewLine, coefsRegr.Select(b => b.ToString())) };
         }
     }
 }

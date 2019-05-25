@@ -85,7 +85,7 @@ namespace KM
                         }
                     }
 
-                    if(Input.GenerationX[l][Input.GenerationX.Length - 1])
+                    if(Input.GenerationX[l][Input.GenerationX[l].Length - 1])
                         planValues[i][j] *= -1;
                 }
             }
