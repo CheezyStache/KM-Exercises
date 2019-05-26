@@ -41,7 +41,7 @@ namespace KM
                 tableObjects[i] = new TableObject
                 {
                     Number = i + 1,
-                    Y = sample.ToArray()
+                    Y = sample.Select(s => Math.Round(s, 3)).ToArray()
                 };
             };
 

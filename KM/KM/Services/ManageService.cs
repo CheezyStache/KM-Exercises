@@ -16,12 +16,14 @@ namespace KM.Services
         private int currentStepIndex;
         private bool next;
         private bool prev;
+        private bool[] nextArray;
 
         public ManageService(/*Button nextButton, Button goBackButon*/)
         {
             /*this.nextButton = nextButton;
             this.goBackButon = goBackButon;*/
             mathStrategies = new IMathStrategy[] { new Math1(), new Math2(this), new Math3(this), new Math4(this), new Math5(this), new Math6(this) };
+            nextArray = new bool[mathStrategies.Length];
         }
 
         public object[] GetResultFromStep(int stepIndex)
@@ -58,6 +60,7 @@ namespace KM.Services
                 {
                     next = false;
                 }
+                nextArray[currentStepIndex - 1] = next;
 
                 return processStatus.messages;
             }
@@ -80,6 +83,11 @@ namespace KM.Services
             nextButton.Enabled = next;
             if(prevB != null)
                 goBackButon.Enabled = prev;
+        }
+
+        public void EnableButton(int current)
+        {
+            next = nextArray[current];
         }
     }
 }

@@ -71,10 +71,10 @@ namespace KM.View
             mainPanel.Controls.Add(next);
             allFormElements.Add(next);
 
-            AddLabelText(out researchLabel, out researchTextBox, mainPanel, allFormElements, 1, "Количество экспериментов");
-            AddLabelText(out xLabel, out xTextBox, mainPanel, allFormElements, 2, "Количество факторов");
-            AddLabelText(out yLabel, out yTextBox, mainPanel, allFormElements, 3, "Количество результатов опытов");
-            AddLabelText(out generationLabel, out generationTextBox, mainPanel, allFormElements, 4, "Количество линейных переменных");
+            AddLabelText(out researchLabel, out researchTextBox, mainPanel, allFormElements, 1, "Количество экспериментов (N)");
+            AddLabelText(out xLabel, out xTextBox, mainPanel, allFormElements, 2, "Количество факторов (Xn)");
+            AddLabelText(out yLabel, out yTextBox, mainPanel, allFormElements, 3, "Количество результатов опытов (Yn)");
+            AddLabelText(out generationLabel, out generationTextBox, mainPanel, allFormElements, 4, "Количество линейных переменных (X'n)");
         }
 
         private void Next_Click(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace KM.View
                 Location = new Point(_form.Width / 4 - 10, (3 * i + 1) * _form.Height / 20),
                 Size = new Size(operationName.Width / 4, _form.Height / 10),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 TextAlign = ContentAlignment.MiddleCenter
             };
             mainPanel.Controls.Add(l);
@@ -108,7 +108,7 @@ namespace KM.View
                 Location = new Point(_form.Width / 2 + 10, (i * 6 + 3) * _form.Height / 40),
                 Size = new Size(operationName.Width / 4, _form.Height / 10),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 TextAlign = HorizontalAlignment.Center
             };
             mainPanel.Controls.Add(t);

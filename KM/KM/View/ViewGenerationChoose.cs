@@ -140,7 +140,7 @@ namespace KM.View
                 Location = new Point(mainPanel.Width / 6 - 10, (i * 6 + 4) * mainPanel.Height / 18),
                 Size = new Size(mainPanel.Width / 5, mainPanel.Height / 6),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 TextAlign = ContentAlignment.MiddleCenter
             };
             mainPanel.Controls.Add(l);
@@ -152,7 +152,7 @@ namespace KM.View
                 Location = new Point(2 * mainPanel.Width / 5 - 10, (i * 2 + 1) * mainPanel.Height / 6),
                 Size = new Size(mainPanel.Width / 8, mainPanel.Height / 3),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 MultiColumn = false
             };
             c.ItemCheck += C_ItemCheck;
@@ -201,7 +201,7 @@ namespace KM.View
                 Location = new Point(3 * mainPanel.Width / 5 - 10, (i * 6 + 4) * mainPanel.Height / 18),
                 Size = new Size(mainPanel.Width / 4, mainPanel.Height / 3),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 Text = "x" + (i + 1 + Input.XCount)
             };
             mainPanel.Controls.Add(t);

@@ -123,7 +123,7 @@ namespace KM.View
                 Location = new Point((j * 8 + 1) * inputPanel.Width / 16 - 10, (3 * i + 1) * _form.Height / 20),
                 Size = new Size(inputPanel.Width / 5, inputPanel.Height / 6),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 TextAlign = ContentAlignment.MiddleCenter
             };
             mainPanel.Controls.Add(l);
@@ -135,7 +135,7 @@ namespace KM.View
                 Location = new Point((j * 8 + 4) * inputPanel.Width / 16 + 20, (i * 6 + 3) * _form.Height / 40),
                 Size = new Size(inputPanel.Width / 5, inputPanel.Height / 6),
                 ForeColor = Color.FromArgb(72, 67, 92),
-                Font = new Font("Times New Roman", 20, FontStyle.Regular),
+                Font = new Font("Times New Roman", 18, FontStyle.Regular),
                 TextAlign = HorizontalAlignment.Center
             };
             mainPanel.Controls.Add(t);

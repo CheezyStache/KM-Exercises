@@ -34,7 +34,7 @@ namespace KM
         {
             Size = new Size(width, height);
             manageService = new ManageService();
-            counterCheck = new bool[7];
+            counterCheck = new bool[6];
 
             vc = new ViewContext(new ViewStartInput(), this, manageService);
         }
@@ -70,17 +70,28 @@ namespace KM
                 counterCheck[counter] = true;
                 manageService.ProcessNext();
             }
+            else
+                manageService.EnableButton(counter - 1);
         }
 
         public void PrevPage()
         {
             if(counter > 0)
                 counter--;
+
+            manageService.EnableButton(counter - 1);
         }
 
         public void StartAgain()
         {
             counter = 0;
+            counterCheck = new bool[6];
+            Input.ResearchCount = 0;
+            Input.XCount = 0;
+            Input.YCount = 0;
+            Input.GenerationRatio = 0;
+            Input.ZeroAndInterval = null;
+            Input.GenerationX = null;
             vc.SetView(new ViewStartInput());
         }
     }
